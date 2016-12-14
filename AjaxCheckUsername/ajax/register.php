@@ -60,7 +60,8 @@
 
                 //取出值，根据返回信息的格式而定
                 //window.alert("服务器返回了"+myXmlHttpRequest.responseText);//4号线，取出值
-
+                
+                /*
                 if (myXmlHttpRequest.responseText == "恭喜您！用户名可用！"){
 
                     document.getElementById("checkUsernameRes").value = myXmlHttpRequest.responseText;
@@ -69,8 +70,22 @@
                     document.getElementById("checkUsernameRes").value = myXmlHttpRequest.responseText;
                     document.getElementById("checkUsernameRes").style = "border-width:0;color:red;margin-left:20px;width:300px";
                 }
+                */
                 
+                //取出xml格式数据中的值
+                var mes = myXmlHttpRequest.responseXML.getElementsByTagName("mes");//获取mes节点
+                var mes_val = mes[0].childNodes[0].nodeValue; //mes[0]表示取出第一个mes节点，childNodes[0]表示取出第一个mes节点的第一个子节点
 
+                    if (mes_val == "恭喜，用户名可用！"){
+                
+                        document.getElementById("checkUsernameRes").value = mes_val;
+                        document.getElementById("checkUsernameRes").style = "border-width:0; color:green;margin-left:20px";
+                    } else if(mes_val == "对不起，用户名已存在！"){
+                        document.getElementById("checkUsernameRes").value = mes_val;
+                        document.getElementById("checkUsernameRes").style = "border-width:0;color:red;margin-left:20px;width:300px";
+                    }
+
+            
             }
         }
 
