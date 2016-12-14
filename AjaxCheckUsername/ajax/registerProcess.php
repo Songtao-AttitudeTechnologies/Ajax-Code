@@ -8,11 +8,23 @@
 	//接受数据
 	$username = $_POST['username'];
 
+	/* 已text格式返回数据	
 	if($username == "daisongtao"){
 		echo "用户名不可用！选个其他的吧";
 	}else{
 		echo "恭喜您！用户名可用！";
 	}
+	*/
+	
+	//已xml格式返回数据
+	$info = "";
+	if($username == "daisongtao"){
+		//echo "用户名不可用！选个其他的吧";
+		$info.="<res><mes>对不起，用户名已存在！</mes></res>";
+	}else{
+		//echo "恭喜您！用户名可用！";
+		$info.="<res><mes>恭喜，用户名可用！</mes></res>";
+	}
 
-
+	echo $info;
 ?>
